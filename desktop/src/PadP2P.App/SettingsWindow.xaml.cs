@@ -48,7 +48,7 @@ public partial class SettingsWindow : FluentWindow
 
     private static Version CurrentVersion()
     {
-        var version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(0, 1, 0);
+        var version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(0, 2, 0);
         return new Version(version.Major, version.Minor, Math.Max(version.Build, 0));
     }
 
