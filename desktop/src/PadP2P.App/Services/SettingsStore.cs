@@ -66,9 +66,8 @@ internal sealed class SettingsStore
 
     public void Save(UserSettings settings)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(settings.Ssid);
-        if (settings.Passphrase.Length is < 8 or > 63)
-            throw new InvalidDataException("The Wi-Fi password must contain 8 to 63 characters.");
+        if (!NetworkProfileValidator.TryValidate(settings.Ssid, settings.Passphrase, out var validationError))
+            throw new InvalidDataException(validationError);
 
         var plain = Encoding.UTF8.GetBytes(settings.Passphrase);
         byte[] encrypted;

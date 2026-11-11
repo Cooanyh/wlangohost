@@ -58,6 +58,7 @@ public partial class App : Application
 
             _viewModel = new AppViewModel(settings, settingsStore, startup, new SuperDisplaySupervisor());
             _viewModel.SettingsRequested += OpenSettings;
+            _viewModel.NetworkProfileRequested += OpenNetworkProfile;
             _viewModel.ExitRequested += ExitApplicationAsync;
             MainWindow = new MainWindow(_viewModel);
             CreateTrayIcon();
@@ -272,6 +273,28 @@ public partial class App : Application
         else
             settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         settingsWindow.ShowDialog();
+    }
+
+    private void OpenNetworkProfile()
+    {
+        if (_viewModel is null || MainWindow is null || !_viewModel.CanEditNetworkProfile) return;
+
+        var profileWindow = new NetworkProfileWindow(_viewModel.Ssid, _viewModel.Passphrase)
+        {
+            Owner = MainWindow,
+            DataContext = _viewModel
+        };
+        if (profileWindow.ShowDialog() != true) return;
+
+        if (!_viewModel.TrySaveNetworkProfile(profileWindow.Ssid, profileWindow.Passphrase, out var error))
+        {
+            MessageBox.Show(
+                MainWindow.IsVisible ? MainWindow : null,
+                error,
+                UiText.Get("NetworkProfile.ErrorTitle"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 
     private async Task ExitApplicationAsync()

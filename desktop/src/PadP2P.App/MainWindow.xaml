@@ -67,7 +67,16 @@
 
             <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <TextBlock Text="{DynamicResource NetworkSettings}" FontSize="11" FontWeight="SemiBold" Opacity="0.62" Margin="0,0,0,8" />
+                    <Grid Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{DynamicResource NetworkSettings}" FontSize="11" FontWeight="SemiBold" Opacity="0.62" VerticalAlignment="Center" />
+                        <ui:Button Grid.Column="1" Content="{DynamicResource NetworkProfile.Edit}" Appearance="Secondary"
+                                   Command="{Binding EditNetworkProfileCommand}" IsEnabled="{Binding CanEditNetworkProfile}"
+                                   ToolTip="{DynamicResource NetworkProfile.EditHint}" ToolTipService.ShowOnDisabled="True" />
+                    </Grid>
                     <Grid Margin="0,0,0,12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75" />

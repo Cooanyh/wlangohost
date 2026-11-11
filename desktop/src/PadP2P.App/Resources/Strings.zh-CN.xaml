@@ -4,6 +4,24 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppSubtitle">Wi-Fi Direct Group Owner 直连网络</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings">设置</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkSettings">网络设置</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Edit">修改…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.EditHint">请先停止 Wi-Fi Direct，再修改网络名称或密码。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Title">Wi-Fi 网络配置</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Description">配置客户端连接时使用的网络名称和密码。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.SsidHint">网络名称最多 32 个 UTF-8 字节。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.PasswordHint">密码为 8–63 个可打印 ASCII 字符，并使用当前 Windows 用户的 DPAPI 加密保存。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Cancel">取消</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Save">保存</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Saved">Wi-Fi 配置已保存，将在下次启动网络时使用。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorTitle">无法保存 Wi-Fi 配置</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidRequired">网络名称不能为空。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidLength">网络名称不能超过 32 个 UTF-8 字节。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidControlCharacters">网络名称不能包含控制字符。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidEncoding">网络名称必须使用有效的 Unicode 字符。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorPasswordLength">密码长度必须为 8 到 63 个字符。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorPasswordCharacters">密码只能包含可打印 ASCII 字符（U+0020–U+007E）。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorNetworkMustBeStopped">请先停止 Wi-Fi Direct，再保存配置。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSave">配置保存失败：{0}</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkName">网络名称</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Password">密码</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Copy">复制</sys:String>
