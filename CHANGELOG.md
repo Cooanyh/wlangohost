@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### 简体中文
+
+- 主界面可修改 Wi-Fi 网络名称和密码；新配置仅在网络停止时保存，并于下次启动生效。
+- 新安装默认名称为 `WlanGO-Direct`；密码继续随机生成，并使用当前 Windows 用户 DPAPI 加密保存。
+
+### English
+
+- The main window can edit the Wi-Fi network name and password. Changes are saved while the network is stopped and apply on the next start.
+- Fresh installs use `WlanGO-Direct` by default. The password remains random and protected with the current Windows user's DPAPI.
+
 ## 0.1.0
 
 ### 简体中文

@@ -22,7 +22,7 @@ WlanGO 使用微软 Wi-Fi Direct Legacy AP 实现建立本地 Wi-Fi Direct Group
 
 - 原生 WPF 桌面界面与 Windows 系统托盘控制。
 - 自动跟随浅色/深色主题；支持简体中文、英文或跟随 Windows。
-- 首次运行生成随机 Wi-Fi 密码，并使用当前 Windows 用户 DPAPI 加密保存。
+- 默认 Wi-Fi 名称为 `WlanGO-Direct`，可在网络停止时修改名称和密码；首次运行生成随机密码，并使用当前 Windows 用户 DPAPI 加密保存。
 - 关闭窗口后继续在托盘运行；选择“退出”会停止网络并清理后端进程。
 - 设置中可添加任意 `.exe` 启动项、自定义名称并逐项启用或停用。多项启动时可选择逐次勾选，或一键同时打开所有已启用项目；托盘菜单提供二级启动菜单和逐项入口。
 - SuperDisplay 默认作为一个启动项提供：WlanGO 会先自动查找，必要时可选取并记住程序路径；启动时隐藏主界面，异常退出后有限次数自动重启。SuperDisplay 不随 WlanGO 分发。
@@ -33,6 +33,7 @@ WlanGO 使用微软 Wi-Fi Direct Legacy AP 实现建立本地 Wi-Fi Direct Group
 
 - 目标平台：Windows 11 x64，且无线适配器和驱动支持 Wi-Fi Direct Group Owner。
 - 频段、信道和并发能力由 Windows、无线适配器及驱动决定；WlanGO 不保证可强制指定 5 GHz 或特定信道。
+- 当前微软 Wi-Fi Direct Legacy API 不提供隐藏 SSID 的设置项。
 - 网络仅用于本地 Wi-Fi Direct 通信。WlanGO 不启用移动热点、ICS 或桥接，也不修改防火墙、路由、DNS、网卡驱动或系统网络配置。
 - 客户端数量与连接详情取决于 Windows 暴露的 Wi-Fi Direct/WLAN 事件和本机接口信息。
 - 卸载会保留用户设置。设置位于 `%LOCALAPPDATA%\WlanGO`；如需清除密码密文和日志，可自行删除此目录。
@@ -62,7 +63,7 @@ The installer is unsigned. Windows SmartScreen may identify its publisher as unk
 
 - Native WPF desktop UI and Windows system-tray controls.
 - Windows light/dark theme support and Simplified Chinese, English, or follow-Windows language options.
-- A cryptographically random first-use Wi-Fi password protected with the current Windows user's DPAPI.
+- The default Wi-Fi name is `WlanGO-Direct`. Edit the name and password while the network is stopped; the first-use password is random and protected with the current Windows user's DPAPI.
 - Closing the window keeps WlanGO in the tray. Choosing **Exit** stops the network and cleans up the backend process.
 - Add any `.exe` as a named launch item and enable or disable each item independently. With multiple items, choose apps each time or start all enabled items together. The tray has a second-level launch menu with individual entries.
 - SuperDisplay is included as a default launch item. WlanGO searches common install locations, can remember a selected path, starts it with its main window hidden, and applies a bounded restart policy after abnormal exits. SuperDisplay is not redistributed.
@@ -72,6 +73,7 @@ The installer is unsigned. Windows SmartScreen may identify its publisher as unk
 
 - Target: Windows 11 x64 with Wi-Fi Direct Group Owner support in the wireless adapter and driver.
 - The usable band, channel, and concurrency depend on Windows and the adapter/driver. WlanGO cannot guarantee a specific band or channel.
+- The current Microsoft Wi-Fi Direct Legacy API does not expose a hidden-SSID setting.
 - The network is for local Wi-Fi Direct communication only. WlanGO does not enable Mobile Hotspot, ICS, or bridging, and does not modify firewall, IP routes, DNS, drivers, or system network settings.
 - Client count and connection details depend on Wi-Fi Direct/WLAN events and local interface data exposed by Windows.
 - Uninstall preserves user settings under `%LOCALAPPDATA%\WlanGO`. Delete that folder manually to remove the protected credential and logs.

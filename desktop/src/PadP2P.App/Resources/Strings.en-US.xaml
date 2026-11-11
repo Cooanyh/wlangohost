@@ -4,6 +4,24 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppSubtitle">Wi-Fi Direct Group Owner network</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings">Settings</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkSettings">Network settings</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Edit">Edit…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.EditHint">Stop Wi-Fi Direct before changing the network name or password.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Title">Wi-Fi network profile</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Description">Set the network name and password clients use to connect.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.SsidHint">The network name can be up to 32 UTF-8 bytes.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.PasswordHint">Use 8–63 characters. The password is protected with the current Windows user's DPAPI.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Cancel">Cancel</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Save">Save</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.Saved">Wi-Fi profile saved. It will be used the next time the network starts.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorTitle">Could not save Wi-Fi profile</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidRequired">The network name cannot be empty.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidLength">The network name cannot exceed 32 UTF-8 bytes.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidControlCharacters">The network name cannot contain control characters.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSsidEncoding">The network name must contain valid Unicode.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorPasswordLength">The password must contain 8 to 63 characters.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorPasswordControlCharacters">The password cannot contain control characters.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorNetworkMustBeStopped">Stop Wi-Fi Direct before saving this profile.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkProfile.ErrorSave">Could not save the profile: {0}</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkName">Network name</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Password">Password</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Copy">Copy</sys:String>

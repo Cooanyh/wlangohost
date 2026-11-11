@@ -64,6 +64,7 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
         CopySsidCommand = new RelayCommand(_ => CopySsid());
         CopyPasswordCommand = new RelayCommand(_ => CopyPassword());
         TogglePasswordVisibilityCommand = new RelayCommand(_ => IsPasswordVisible = !IsPasswordVisible);
+        EditNetworkProfileCommand = new RelayCommand(_ => NetworkProfileRequested?.Invoke(), () => CanEditNetworkProfile);
         AddLauncherEntryCommand = new RelayCommand(_ => AddLauncherEntry());
         SelectLauncherEntryPathCommand = new RelayCommand(parameter =>
         {
@@ -87,6 +88,7 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
 
     public event PropertyChangedEventHandler? PropertyChanged;
     public event Action? SettingsRequested;
+    public event Action? NetworkProfileRequested;
     public event Func<Task>? ExitRequested;
     public ObservableCollection<string> ConnectedDevices { get; } = [];
     public ObservableCollection<LauncherEntry> LauncherEntries { get; } = [];
@@ -98,6 +100,7 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
     public RelayCommand CopySsidCommand { get; }
     public RelayCommand CopyPasswordCommand { get; }
     public RelayCommand TogglePasswordVisibilityCommand { get; }
+    public RelayCommand EditNetworkProfileCommand { get; }
     public RelayCommand AddLauncherEntryCommand { get; }
     public RelayCommand SelectLauncherEntryPathCommand { get; }
     public RelayCommand RemoveLauncherEntryCommand { get; }
@@ -106,6 +109,7 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
 
     public string Ssid => _settings.Ssid;
     public string Passphrase => _settings.Passphrase;
+    public bool CanEditNetworkProfile => !IsBusy && _state == NetworkState.Stopped;
     public bool ShowLaunchers
     {
         get => _showLaunchers;
@@ -178,7 +182,18 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
         NetworkState.Starting or NetworkState.Stopping => new SolidColorBrush(Color.FromRgb(0, 120, 212)),
         _ => SystemColors.GrayTextBrush
     };
-    public bool IsBusy { get => _isBusy; private set { if (SetField(ref _isBusy, value)) { OnPropertyChanged(nameof(CanToggleNetwork)); ToggleNetworkCommand.RaiseCanExecuteChanged(); } } }
+    public bool IsBusy
+    {
+        get => _isBusy;
+        private set
+        {
+            if (!SetField(ref _isBusy, value)) return;
+            OnPropertyChanged(nameof(CanToggleNetwork));
+            OnPropertyChanged(nameof(CanEditNetworkProfile));
+            ToggleNetworkCommand.RaiseCanExecuteChanged();
+            EditNetworkProfileCommand.RaiseCanExecuteChanged();
+        }
+    }
     public bool CanToggleNetwork => !IsBusy && _state is not (NetworkState.Starting or NetworkState.Stopping);
     public bool IsPasswordVisible
     {
@@ -294,6 +309,46 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
             StatusMessage = UiText.Get("Status.StopFailed");
         }
         finally { IsBusy = false; }
+    }
+
+    public bool TrySaveNetworkProfile(string ssid, string passphrase, out string errorMessage)
+    {
+        if (!CanEditNetworkProfile)
+        {
+            errorMessage = UiText.Get("NetworkProfile.ErrorNetworkMustBeStopped");
+            return false;
+        }
+
+        if (!NetworkProfileValidator.TryValidate(ssid, passphrase, out var validationError))
+        {
+            errorMessage = UiText.Get(validationError);
+            return false;
+        }
+
+        var previousSsid = _settings.Ssid;
+        var previousPassphrase = _settings.Passphrase;
+        _settings.Ssid = ssid;
+        _settings.Passphrase = passphrase;
+        try
+        {
+            _settingsStore.Save(_settings);
+        }
+        catch (Exception exception)
+        {
+            _settings.Ssid = previousSsid;
+            _settings.Passphrase = previousPassphrase;
+            errorMessage = UiText.Format("NetworkProfile.ErrorSave", exception.Message);
+            ErrorMessage = errorMessage;
+            return false;
+        }
+
+        OnPropertyChanged(nameof(Ssid));
+        OnPropertyChanged(nameof(Passphrase));
+        OnPropertyChanged(nameof(DisplayPassphrase));
+        ErrorMessage = string.Empty;
+        StatusMessage = UiText.Get("NetworkProfile.Saved");
+        errorMessage = string.Empty;
+        return true;
     }
 
     public Task ShutdownNetworkAsync() => _network.ShutdownAsync();
@@ -615,7 +670,9 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
         OnPropertyChanged(nameof(DevicePlaceholderVisibility));
         OnPropertyChanged(nameof(StateBrush));
         OnPropertyChanged(nameof(CanToggleNetwork));
+        OnPropertyChanged(nameof(CanEditNetworkProfile));
         ToggleNetworkCommand.RaiseCanExecuteChanged();
+        EditNetworkProfileCommand.RaiseCanExecuteChanged();
     }
 
     private void PersistSettings()
