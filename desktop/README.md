@@ -42,7 +42,7 @@ The application output is under `artifacts\Release\WlanGO-Package\app`; the inst
 
 The package output includes the applicable WPF-UI, H.NotifyIcon, .NET runtime, and Microsoft Wi-Fi Direct sample notices.
 
-GitHub Actions builds the x64 application and Inno Setup installer on Windows for pull requests, pushes to `main`, and manual runs. To publish a release, set the version in `PadP2P.App.csproj`, update `CHANGELOG.md`, and push a matching tag such as `v0.1.0`. The tag workflow checks that the tag matches the app version, then publishes the installer and `SHA256SUMS.txt` as a GitHub Release. Wi-Fi Direct connection checks require physical Wi-Fi Direct-capable hardware and are not run on hosted runners.
+GitHub Actions builds the x64 application and Inno Setup installer on Windows for pull requests, pushes to `main`, and manual runs. Workflow actions are pinned to upstream commit SHAs; Dependabot checks the pinned actions and NuGet packages weekly. To publish a release, set the version in `PadP2P.App.csproj`, update `CHANGELOG.md`, and push a matching tag such as `v0.1.0`. The tag workflow checks that the tag matches the app version, then publishes the installer and `SHA256SUMS.txt` as a GitHub Release. Wi-Fi Direct connection checks require physical Wi-Fi Direct-capable hardware and are not run on hosted runners.
 
 ## User data and privacy
 
