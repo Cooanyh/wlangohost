@@ -38,6 +38,7 @@ jobs:
           path: |
             desktop/artifacts/Release/WlanGO-Installer/WlanGO-Setup-*-x64.exe
             desktop/artifacts/Release/WlanGO-Installer/SHA256SUMS.txt
+            desktop/artifacts/Release/WlanGO-Installer/RELEASE-NOTES.md
           if-no-files-found: error
           retention-days: 14
 
@@ -62,7 +63,19 @@ jobs:
         run: |
           $installer = Get-ChildItem -LiteralPath release-assets -Filter 'WlanGO-Setup-*-x64.exe' | Select-Object -First 1
           $checksums = Join-Path (Get-Location) 'release-assets\SHA256SUMS.txt'
-          if ($null -eq $installer -or -not (Test-Path -LiteralPath $checksums)) {
-            throw 'The release installer or checksum file is missing.'
+          $notesPath = Join-Path (Get-Location) 'release-assets\RELEASE-NOTES.md'
+          if ($null -eq $installer -or -not (Test-Path -LiteralPath $checksums) -or -not (Test-Path -LiteralPath $notesPath)) {
+            throw 'The release installer, checksum file, or bilingual release notes are missing.'
           }
-          gh release create $env:GITHUB_REF_NAME $installer.FullName $checksums --generate-notes --title "WlanGO $env:GITHUB_REF_NAME"
+          $releaseTag = $env:GITHUB_REF_NAME
+          $releaseVersion = [regex]::Match($installer.Name, '^WlanGO-Setup-(.+)-x64\.exe$').Groups[1].Value
+          $releaseBase = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/releases/download/$releaseTag"
+          $downloadSection = @"
+
+          ## 下载 / Downloads
+
+          - [WlanGO-Setup-$releaseVersion-x64.exe]($releaseBase/$($installer.Name)) — Windows x64 安装程序 / Windows x64 installer (Inno Setup)
+          - [SHA256SUMS.txt]($releaseBase/SHA256SUMS.txt) — 安装程序 SHA-256 校验值 / Installer SHA-256 checksum
+          "@
+          [System.IO.File]::AppendAllText($notesPath, $downloadSection, [System.Text.UTF8Encoding]::new($false))
+          gh release create $releaseTag $installer.FullName $checksums --notes-file $notesPath --title "WlanGO $releaseTag"

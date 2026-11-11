@@ -80,5 +80,15 @@ $checksumPath = Join-Path $outputRoot 'SHA256SUMS.txt'
 $checksumText = "{0} *{1}`r`n" -f $hash, (Split-Path -Leaf $installerPath)
 [System.IO.File]::WriteAllText($checksumPath, $checksumText, [System.Text.UTF8Encoding]::new($false))
 
-Get-Item -LiteralPath $installerPath, $checksumPath | Select-Object FullName, Length
+$changelogPath = Join-Path $repoRoot 'CHANGELOG.md'
+if (-not (Test-Path -LiteralPath $changelogPath)) { throw "Changelog was not found: $changelogPath" }
+$sectionPattern = "(?ms)^##[ \t]+$([regex]::Escape($version))[ \t]*\r?\n(?<body>.*?)(?=^##[ \t]|\z)"
+$changelog = [System.IO.File]::ReadAllText($changelogPath)
+$releaseSection = [regex]::Match($changelog, $sectionPattern)
+if (-not $releaseSection.Success) { throw "No changelog section was found for version $version." }
+$notesPath = Join-Path $outputRoot 'RELEASE-NOTES.md'
+$notes = $releaseSection.Groups['body'].Value.Trim() + "`r`n"
+[System.IO.File]::WriteAllText($notesPath, $notes, [System.Text.UTF8Encoding]::new($false))
+
+Get-Item -LiteralPath $installerPath, $checksumPath, $notesPath | Select-Object FullName, Length
 Write-Host "SHA256 $hash  $(Split-Path -Leaf $installerPath)"
