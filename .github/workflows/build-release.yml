@@ -1,0 +1,68 @@
+name: Build and release
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build x64 app and installer
+        shell: pwsh
+        run: |
+          .\desktop\Build-Desktop.ps1 -PlatformToolset v143
+          .\desktop\Build-Installer.ps1
+
+      - name: Upload release files
+        uses: actions/upload-artifact@v4
+        with:
+          name: WlanGO-${{ github.sha }}
+          path: |
+            desktop/artifacts/Release/WlanGO-Installer/WlanGO-Setup-*-x64.exe
+            desktop/artifacts/Release/WlanGO-Installer/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
+
+  publish-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: windows-2022
+    permissions:
+      contents: write
+    steps:
+      - name: Download installer artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: WlanGO-${{ github.sha }}
+          path: release-assets
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem -LiteralPath release-assets -Filter 'WlanGO-Setup-*-x64.exe' | Select-Object -First 1
+          $checksums = Join-Path (Get-Location) 'release-assets\SHA256SUMS.txt'
+          if ($null -eq $installer -or -not (Test-Path -LiteralPath $checksums)) {
+            throw 'The release installer or checksum file is missing.'
+          }
+          gh release create $env:GITHUB_REF_NAME $installer.FullName $checksums --generate-notes --title "WlanGO $env:GITHUB_REF_NAME"

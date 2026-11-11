@@ -1,0 +1,152 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppName">WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppSubtitle">Wi-Fi Direct Group Owner network</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings">Settings</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkSettings">Network settings</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkName">Network name</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Password">Password</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Copy">Copy</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Show">Show</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Hide">Hide</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="ConnectedDevices">Connected devices</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DeviceCount">Connected devices: {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DevicePlaceholder">Connected devices and available details appear here.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TrayFooter">WlanGO keeps running in the system tray when this window is closed.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="OpenSuperDisplay">Open SuperDisplay</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Started">Wi-Fi Direct is running</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Starting">Starting Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Stopping">Stopping Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Error">Wi-Fi Direct needs attention</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Stopped">Wi-Fi Direct is stopped</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Stop">Stop network</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Starting">Starting…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Stopping">Stopping…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Start">Start network</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Running">Running</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Starting">Starting</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Stopping">Stopping</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Error">Error</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Stopped">Stopped</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.ReadyMessage">Wi-Fi Direct is ready to start.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.PreviousRunMessage">The network was running at the last exit. Automatic start is off, so it will stay stopped.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.AutoStartEnabled">WlanGO will start in the system tray when you sign in to Windows.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.AutoStartDisabled">App startup has been disabled.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkAutoStartEnabled">WlanGO will start Wi-Fi Direct when the app launches.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkAutoStartDisabled">Wi-Fi Direct will start only when you start it manually.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StartRequest">Asking Windows to start Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.GroupOwnerRunning">The Wi-Fi Direct Group Owner is running.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StartFailed">Could not start Wi-Fi Direct. Review the error and try again.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StopRequest">Stopping Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkStopped">Wi-Fi Direct has stopped.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StopFailed">Wi-Fi Direct did not stop cleanly.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.OpeningSuperDisplay">Opening SuperDisplay with its main window hidden…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.OpenSuperDisplayFailed">Could not open SuperDisplay.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.SuperDisplaySelectionCancelled">No SuperDisplay executable was selected.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.SsidCopied">SSID copied to the clipboard.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CopyPassword">Other apps may read a password copied to the clipboard. Continue?</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CopyPasswordTitle">Copy Wi-Fi password</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.PasswordCopied">Password copied. Other apps may read the clipboard.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.BackendError">The Wi-Fi Direct backend reported an error.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.CommandFailed">The operation did not complete.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.StopConnected">{0} device(s) are connected. Stopping Wi-Fi Direct will disconnect them. Continue?</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.StopTitle">Stop Wi-Fi Direct</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Status">Wi-Fi Direct: {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Tooltip">WlanGO · {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.OpenWindow">Open main window</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.CopySsid">Copy SSID</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.CopyPassword">Copy password…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.StartWithWindows">Start app when I sign in</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.AutoStartNetwork">Start Wi-Fi Direct with the app</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Settings">Settings…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Exit">Exit</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.ExitConnected">{0} device(s) are connected. Exiting will stop Wi-Fi Direct and disconnect them. Continue?</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.ExitTitle">Exit WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CleanupFailed">An error occurred while stopping Wi-Fi Direct.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CleanupTitle">WlanGO cleanup</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Startup.Failed">WlanGO could not start.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Startup.XamlLine">XAML line {0}, column {1}.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Title">Settings · WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Description">Manage sign-in behavior and app launch shortcuts.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.StartWithWindows">Start app when I sign in</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.StartWithWindowsHint">Starts in the system tray. No administrator access is needed.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AutoStartNetwork">Start Wi-Fi Direct when the app launches</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AutoStartNetworkHint">The network starts automatically only when enabled. Manual stops are remembered.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowSuperDisplay">Show SuperDisplay buttons and tray menu</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowSuperDisplayHint">Hides the shortcuts without stopping a running SuperDisplay process.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayPath">SuperDisplay executable path</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayPathHint">WlanGO searches common install locations first. If needed, select SuperDisplay.exe and the path will be saved.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Browse">Browse…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ClearPath">Clear</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Language">App language</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.System">Follow Windows</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.Chinese">简体中文</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.English">English</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SecurityHint">The Wi-Fi password is protected with the current Windows user's DPAPI and is not written to app logs.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Updates">Updates and support</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CurrentVersion">Current version: {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">Manually check GitHub for the latest stable release. Installers are built with Inno Setup; you choose when to download and install. No background updates.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CheckUpdates">Check for updates</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenReleases">Downloads and releases</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenProject">GitHub project</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Checking">Checking GitHub for the latest version…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Current">You are using the latest version ({0}).</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Available">Version {0} is available. Open “Downloads and releases” to get the installer.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Failed">Could not reach GitHub to check. You can still open the releases page.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.OpenFailed">Could not open your browser. Check the Windows default browser settings.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Done">Done</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayFilter">SuperDisplay executable|SuperDisplay.exe|Executable files|*.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayTitle">Select SuperDisplay.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.NotSelected">Not selected</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RunningHidden">SuperDisplay is running with its main window hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.AdoptedHidden">Found a running SuperDisplay process and hid its main window.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.NotFound">SuperDisplay.exe was not found. Install SuperDisplay or locate the executable in the file picker.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.HideFailedRunning">SuperDisplay is running, but its main window could not be confirmed hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.StartFailed">Windows could not start SuperDisplay.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.ExitedDuringStart">SuperDisplay exited while starting.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.HideFailedStarted">SuperDisplay started, but its main window could not be confirmed hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartedHidden">SuperDisplay restarted after an unexpected exit with its main window hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.StartedHidden">SuperDisplay started with its main window hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.ExitedNormally">SuperDisplay exited normally.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartLimit">SuperDisplay exited unexpectedly too many times. Automatic restarts are paused; use Open SuperDisplay to try again.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartDelay">SuperDisplay exited unexpectedly. Retrying in {0} seconds ({1}/{2}).</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartPathMissing">SuperDisplay.exe was not found. Automatic restart stopped.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.AdoptedAfterRestart">SuperDisplay is running again with its main window hidden.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartFailed">Could not restart SuperDisplay: {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.PathInvalid">The selected file is not a usable SuperDisplay.exe.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowLaunchers">Show app launch shortcuts</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowLaunchersHint">Hides the main button and tray submenu without closing apps that are already running.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Launchers">App launch items</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchersHint">Add executable files, name them, and enable or disable each item independently.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AddLauncher">Add app</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LauncherName">App name</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LauncherEnabled">Enabled</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.RemoveLauncher">Remove</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayBehaviorHint">SuperDisplay starts with its main window hidden and retries after an unexpected exit.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.MultipleLaunchMode">When several are enabled</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeSelect">Choose items each time</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeAll">Open all enabled items together</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeHint">The main button follows this choice. The tray submenu also lets you start items one at a time.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenGeneric">Open apps</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenOne">Open {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenCombined">Open together: {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Select">Choose apps to open…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.CombineSeparator"> + </sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Untitled">Unnamed app</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.PathNotSelected">No app selected</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.SelectionTitle">Choose apps to open</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.SelectionHint">Select one or more items, then start the selection.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Cancel">Cancel</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.LaunchSelected">Start selected</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.PathMissing">This app could not be found. Select its executable again in Settings.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.StartFailed">Windows could not start this app.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchingApps">Starting selected apps…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchFailed">Some apps could not start. Review the error details.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchCancelled">App launch cancelled.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchStarted">Started {0} app(s).</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.LauncherTitle">Select an app to add</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.ExecutableFilter">Executable files|*.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.LaunchApps">Launch apps</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.LaunchAll">Start all enabled items</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.SelectLaunchers">Choose apps to start…</sys:String>
+</ResourceDictionary>

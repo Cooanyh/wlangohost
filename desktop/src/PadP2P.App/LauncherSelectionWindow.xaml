@@ -1,0 +1,47 @@
+<ui:FluentWindow x:Class="PadP2P.App.LauncherSelectionWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Title="{DynamicResource Launcher.SelectionTitle}"
+                 Icon="pack://application:,,,/Assets/PadP2P.ico"
+                 Width="470" Height="500"
+                 MinWidth="400" MinHeight="380"
+                 ResizeMode="CanResizeWithGrip"
+                 WindowStartupLocation="CenterOwner">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,0,0,16">
+            <TextBlock Text="{DynamicResource Launcher.SelectionTitle}" FontFamily="Segoe UI Variable Display" FontSize="20" FontWeight="SemiBold" />
+            <TextBlock Text="{DynamicResource Launcher.SelectionHint}" Opacity="0.68" TextWrapping="Wrap" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,0,12,8">
+            <ItemsControl ItemsSource="{Binding Choices}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="8" Padding="12,10" Margin="0,0,16,8"
+                                Background="{DynamicResource LayerFillColorDefaultBrush}">
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalContentAlignment="Center">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding ExecutablePath}" FontSize="11" Opacity="0.65" TextTrimming="CharacterEllipsis" ToolTip="{Binding ExecutablePath}" />
+                                </StackPanel>
+                            </CheckBox>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <ui:Button Content="{DynamicResource Launcher.Cancel}" Appearance="Secondary" IsCancel="True" Margin="0,0,8,0" />
+            <ui:Button x:Name="LaunchSelectedButton" Content="{DynamicResource Launcher.LaunchSelected}"
+                       Appearance="Primary" IsDefault="True" IsEnabled="False" Click="LaunchSelected_Click" />
+        </StackPanel>
+    </Grid>
+</ui:FluentWindow>

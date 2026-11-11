@@ -1,0 +1,152 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppName">WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="AppSubtitle">Wi-Fi Direct Group Owner 直连网络</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings">设置</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkSettings">网络设置</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="NetworkName">网络名称</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Password">密码</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Copy">复制</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Show">显示</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Hide">隐藏</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="ConnectedDevices">已连接设备</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DeviceCount">已连接 {0} 台设备</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DevicePlaceholder">Windows 检测到设备连接后，会在这里显示连接信息。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TrayFooter">关闭窗口后，WlanGO 会继续在系统托盘运行。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="OpenSuperDisplay">打开 SuperDisplay</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Started">Wi-Fi Direct 已启动</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Starting">正在启动 Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Stopping">正在停止 Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Error">Wi-Fi Direct 需要处理</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.Stopped">Wi-Fi Direct 已停止</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Stop">停止网络</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Starting">正在启动…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Stopping">正在停止…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Action.Start">启动网络</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Running">运行中</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Starting">启动中</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Stopping">停止中</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Error">错误</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.Stopped">已停止</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.ReadyMessage">可以启动 Wi-Fi Direct 网络。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Network.PreviousRunMessage">上次退出时网络正在运行；自动启动已关闭，本次不会自动重连。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.AutoStartEnabled">登录 Windows 后，WlanGO 将在系统托盘启动。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.AutoStartDisabled">应用开机自启已关闭。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkAutoStartEnabled">WlanGO 启动后会自动开启 Wi-Fi Direct。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkAutoStartDisabled">Wi-Fi Direct 只会在你手动启动时开启。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StartRequest">正在请求 Windows 启动 Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.GroupOwnerRunning">Wi-Fi Direct Group Owner 已运行。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StartFailed">无法启动 Wi-Fi Direct，请查看错误信息后重试。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StopRequest">正在停止 Wi-Fi Direct…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.NetworkStopped">Wi-Fi Direct 已停止。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.StopFailed">Wi-Fi Direct 未能正常停止。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.OpeningSuperDisplay">正在打开 SuperDisplay（隐藏主界面）…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.OpenSuperDisplayFailed">无法打开 SuperDisplay。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.SuperDisplaySelectionCancelled">未选择 SuperDisplay 程序。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.SsidCopied">SSID 已复制到剪贴板。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CopyPassword">复制后，剪贴板中的密码可能被其他应用读取。是否继续？</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CopyPasswordTitle">复制 Wi-Fi 密码</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.PasswordCopied">密码已复制；剪贴板可能被其他应用读取。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.BackendError">Wi-Fi Direct 后端报告错误。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.CommandFailed">操作未完成。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.StopConnected">当前有 {0} 台设备连接。停止 Wi-Fi Direct 会断开这些设备，是否继续？</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.StopTitle">停止 Wi-Fi Direct</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Status">Wi-Fi Direct：{0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Tooltip">WlanGO · {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.OpenWindow">打开主窗口</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.CopySsid">复制 SSID</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.CopyPassword">复制密码…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.StartWithWindows">开机自动启动应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.AutoStartNetwork">启动后自动开启 Wi-Fi Direct</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Settings">设置…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.Exit">退出程序</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.ExitConnected">当前有 {0} 台设备连接。退出程序会停止 Wi-Fi Direct 并断开设备，是否继续？</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.ExitTitle">退出 WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CleanupFailed">Wi-Fi Direct 清理时发生错误。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Prompt.CleanupTitle">WlanGO 清理</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Startup.Failed">WlanGO 无法启动。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Startup.XamlLine">XAML 第 {0} 行，第 {1} 列。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Title">设置 · WlanGO</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Description">管理登录行为和应用快捷启动。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.StartWithWindows">开机自动启动应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.StartWithWindowsHint">登录后进入系统托盘，无需管理员权限。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AutoStartNetwork">启动后自动开启 Wi-Fi Direct</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AutoStartNetworkHint">仅在开启此选项后自动建立网络；手动停止会被记住。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowSuperDisplay">显示 SuperDisplay 按钮和托盘菜单</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowSuperDisplayHint">关闭后隐藏入口，不会停止已运行的 SuperDisplay。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayPath">SuperDisplay 程序路径</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayPathHint">会先自动查找；找不到时可选择 SuperDisplay.exe，之后会记住路径。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Browse">选择…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ClearPath">清除</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Language">应用语言</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.System">跟随 Windows</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.Chinese">简体中文</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Language.English">English</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SecurityHint">Wi-Fi 密码使用当前 Windows 用户的 DPAPI 保护，不会写入应用日志。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Updates">更新与支持</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CurrentVersion">当前版本：{0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">手动检查 GitHub 上的最新正式版；安装包由 Inno Setup 制作，需由你确认下载和安装，不会后台自动更新。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CheckUpdates">检查更新</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenReleases">下载与版本记录</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenProject">GitHub 项目</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Checking">正在查询 GitHub 最新版本…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Current">当前已是最新版本（{0}）。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Available">发现新版本 {0}。请打开“下载与版本记录”获取安装包。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Failed">无法连接 GitHub 检查版本；你仍可直接打开下载页面。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.OpenFailed">无法打开浏览器，请检查 Windows 默认浏览器设置。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Done">完成</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayFilter">SuperDisplay 程序|SuperDisplay.exe|可执行文件|*.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayTitle">选择 SuperDisplay.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.NotSelected">尚未选择</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RunningHidden">SuperDisplay 已运行，主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.AdoptedHidden">检测到 SuperDisplay 已运行，主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.NotFound">未找到 SuperDisplay.exe。请安装 SuperDisplay，或在弹出的文件选择窗口中定位程序。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.HideFailedRunning">SuperDisplay 正在运行，但未能确认主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.StartFailed">Windows 未能启动 SuperDisplay。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.ExitedDuringStart">SuperDisplay 在启动过程中退出。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.HideFailedStarted">SuperDisplay 已启动，但未能确认主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartedHidden">SuperDisplay 异常退出后已自动重启，主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.StartedHidden">SuperDisplay 已启动，主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.ExitedNormally">SuperDisplay 已正常退出。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartLimit">SuperDisplay 多次异常退出，已暂停自动重启；可再次点击“打开 SuperDisplay”重试。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartDelay">SuperDisplay 异常退出，将在 {0} 秒后尝试重启（{1}/{2}）。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartPathMissing">未找到 SuperDisplay.exe，自动重启已停止。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.AdoptedAfterRestart">SuperDisplay 已恢复运行，主界面已隐藏。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.RestartFailed">SuperDisplay 自动重启失败：{0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="SuperDisplay.PathInvalid">所选文件不是可用的 SuperDisplay.exe。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowLaunchers">显示应用启动入口</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.ShowLaunchersHint">关闭后会隐藏主页按钮和托盘启动菜单，不会关闭已经打开的程序。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Launchers">应用启动项</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchersHint">添加可执行文件并自定义名称；每项都可以单独启用或停用。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.AddLauncher">添加程序</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LauncherName">应用名称</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LauncherEnabled">启用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.RemoveLauncher">移除</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SuperDisplayBehaviorHint">SuperDisplay 会隐藏主界面启动；异常退出时会按退避间隔自动恢复。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.MultipleLaunchMode">启用多项时</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeSelect">每次选择要打开的项目</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeAll">同时打开全部已启用项目</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.LaunchModeHint">主页按钮按此方式启动；托盘二级菜单也提供逐项启动入口。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenGeneric">打开应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenOne">打开 {0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.OpenCombined">同时打开：{0}</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Select">选择要启动的应用…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.CombineSeparator"> + </sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Untitled">未命名应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.PathNotSelected">尚未选择程序</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.SelectionTitle">选择要启动的应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.SelectionHint">勾选一个或多个项目，然后启动所选项目。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.Cancel">取消</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.LaunchSelected">启动所选项目</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.PathMissing">找不到此程序，请在设置中重新选择可执行文件。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Launcher.StartFailed">Windows 未能启动此程序。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchingApps">正在启动所选程序…</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchFailed">部分程序未能启动，请查看错误信息。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchCancelled">已取消启动。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Status.LaunchStarted">已启动 {0} 个程序。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.LauncherTitle">选择要添加的程序</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.ExecutableFilter">可执行文件|*.exe</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.LaunchApps">启动应用</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.LaunchAll">启动全部已启用项目</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Tray.SelectLaunchers">选择要启动的项目…</sys:String>
+</ResourceDictionary>

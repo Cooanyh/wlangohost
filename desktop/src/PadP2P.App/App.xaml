@@ -1,0 +1,33 @@
+<Application x:Class="PadP2P.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+                <ResourceDictionary Source="Resources/Strings.zh-CN.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="NetworkActionButtonStyle"
+                   TargetType="{x:Type ui:Button}"
+                   BasedOn="{StaticResource {x:Type ui:Button}}">
+                <Setter Property="Appearance" Value="Primary" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsNetworkRunning}" Value="True">
+                        <Setter Property="Appearance" Value="Danger" />
+                        <Setter Property="Background" Value="#A94F55" />
+                        <Setter Property="BorderBrush" Value="#A94F55" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="MouseOverBackground" Value="#B65D63" />
+                        <Setter Property="MouseOverBorderBrush" Value="#B65D63" />
+                        <Setter Property="PressedBackground" Value="#914149" />
+                        <Setter Property="PressedBorderBrush" Value="#914149" />
+                        <Setter Property="PressedForeground" Value="White" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

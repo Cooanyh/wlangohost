@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9A43C23E-6B42-4E5A-AB1B-2B7F36AE2C71}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PadP2PControlBackend</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\artifacts\Release\WlanGO-Package\backend\</OutDir>
+    <IntDir>$(ProjectDir)..\..\artifacts\Release\WlanGO-Package\obj\backend\</IntDir>
+    <TargetName>WlanGO.ControlBackend</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\third_party\Windows-classic-samples\Samples\WiFiDirectLegacyAP\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>runtimeobject.lib;advapi32.lib;ole32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)..\..\..\third_party\Windows-classic-samples\Samples\WiFiDirectLegacyAP\cpp\stdafx.h" />
+    <ClInclude Include="$(ProjectDir)..\..\..\third_party\Windows-classic-samples\Samples\WiFiDirectLegacyAP\cpp\targetver.h" />
+    <ClInclude Include="$(ProjectDir)..\..\..\third_party\Windows-classic-samples\Samples\WiFiDirectLegacyAP\cpp\WlanHostedNetworkWinRT.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ControlBackend.cpp" />
+    <ClCompile Include="$(ProjectDir)..\..\..\third_party\Windows-classic-samples\Samples\WiFiDirectLegacyAP\cpp\WlanHostedNetworkWinRT.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
