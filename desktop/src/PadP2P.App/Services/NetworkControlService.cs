@@ -38,6 +38,9 @@ internal sealed class NetworkControlService : IAsyncDisposable
     public event Action<PeerChangedEventArgs>? PeerChanged;
     public event Action<string>? ErrorReceived;
 
+    public bool CanEditProfile => State == NetworkState.Stopped ||
+        State == NetworkState.Error && !IsBackendProcessRunning;
+
     public async Task StartNetworkAsync(string ssid, string passphrase, CancellationToken cancellationToken = default)
     {
         await _lifecycleGate.WaitAsync(cancellationToken).ConfigureAwait(false);
@@ -461,6 +464,9 @@ internal sealed class NetworkControlService : IAsyncDisposable
 
     private async Task CleanupBackendCoreAsync()
     {
+        if (IsBackendProcessRunning)
+            throw new InvalidOperationException("The Wi-Fi Direct backend is still running and cannot be cleaned up safely.");
+
         _readCancellation?.Cancel();
         _pipe?.Dispose();
         if (_readerTask is not null)
@@ -486,6 +492,17 @@ internal sealed class NetworkControlService : IAsyncDisposable
     }
 
     private static string DecodeBase64(string value) => Encoding.UTF8.GetString(Convert.FromBase64String(value));
+
+    private bool IsBackendProcessRunning
+    {
+        get
+        {
+            var process = _process;
+            if (process is null) return false;
+            try { return !process.HasExited; }
+            catch (InvalidOperationException) { return false; }
+        }
+    }
 
     private void ThrowIfDisposed()
     {

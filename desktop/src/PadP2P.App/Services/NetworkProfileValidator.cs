@@ -40,9 +40,9 @@ internal static class NetworkProfileValidator
             return false;
         }
 
-        if (ContainsControlCharacters(passphrase))
+        if (passphrase.Any(character => character is < ' ' or > '~'))
         {
-            errorResourceKey = "NetworkProfile.ErrorPasswordControlCharacters";
+            errorResourceKey = "NetworkProfile.ErrorPasswordCharacters";
             return false;
         }
 

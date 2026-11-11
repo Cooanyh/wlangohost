@@ -109,7 +109,7 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
 
     public string Ssid => _settings.Ssid;
     public string Passphrase => _settings.Passphrase;
-    public bool CanEditNetworkProfile => !IsBusy && _state == NetworkState.Stopped;
+    public bool CanEditNetworkProfile => !IsBusy && _network.CanEditProfile;
     public bool ShowLaunchers
     {
         get => _showLaunchers;
