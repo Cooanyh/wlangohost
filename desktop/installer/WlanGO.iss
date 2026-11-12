@@ -1,5 +1,5 @@
 #ifndef AppVersion
-  #define AppVersion "0.2.0"
+  #define AppVersion "0.2.1"
 #endif
 
 #ifndef PackageDir
@@ -62,6 +62,31 @@ Name: "{autodesktop}\WlanGO"; Filename: "{app}\WlanGO.exe"; Tasks: desktopicon
 Filename: "{app}\WlanGO.exe"; Description: "{cm:LaunchProgram,WlanGO}"; Flags: postinstall nowait skipifsilent unchecked
 
 [Code]
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  RunValue: string;
+  HasStartupRegistration: Boolean;
+  StartupCommand: string;
+begin
+  if CurStep = ssPostInstall then
+  begin
+    HasStartupRegistration := RegQueryStringValue(HKCU,
+      'Software\Microsoft\Windows\CurrentVersion\Run', 'WlanGO', RunValue);
+    if not HasStartupRegistration then
+      HasStartupRegistration := RegQueryStringValue(HKCU,
+        'Software\Microsoft\Windows\CurrentVersion\Run', 'PadP2P', RunValue);
+
+    if HasStartupRegistration then
+    begin
+      StartupCommand := '"' + ExpandConstant('{app}\WlanGO.exe') + '" --start-hidden';
+      if RegWriteStringValue(HKCU,
+        'Software\Microsoft\Windows\CurrentVersion\Run', 'WlanGO', StartupCommand) then
+        RegDeleteValue(HKCU,
+          'Software\Microsoft\Windows\CurrentVersion\Run', 'PadP2P');
+    end;
+  end;
+end;
+
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   RunValue: string;
