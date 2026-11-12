@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1
+
+### 简体中文
+
+- 修复应用更换安装目录后仍使用旧程序路径开机启动的问题；应用启动时会同步当前程序路径，安装更新时也会迁移已存在的启动项。
+
+### English
+
+- Fixed Windows startup continuing to use an old executable path after the app moves to a different install directory. WlanGO synchronizes the current executable when it starts and migrates an existing startup entry during installation.
+
 ## 0.2.0
 
 ### 简体中文

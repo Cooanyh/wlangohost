@@ -11,7 +11,7 @@ WlanGO 使用微软 Wi-Fi Direct Legacy AP 实现建立本地 Wi-Fi Direct Group
 
 ### 获取与安装
 
-1. 从 [GitHub Releases](https://github.com/Cooanyh/wlangohost/releases) 下载 `WlanGO-Setup-0.1.0-x64.exe`。
+1. 从 [GitHub Releases](https://github.com/Cooanyh/wlangohost/releases) 下载 `WlanGO-Setup-0.2.1-x64.exe`。
 2. 安装时可选择目标文件夹，包括其他磁盘；安装不需要管理员权限。
 3. 启动 WlanGO 并选择“启动网络”，再从客户端的 WLAN 列表连接显示的 SSID。
 4. “开机启动应用”和“应用启动后启动网络”是两个独立选项，默认关闭。
@@ -52,7 +52,7 @@ WlanGO uses Microsoft's Wi-Fi Direct Legacy AP implementation to create a local 
 
 ### Download and install
 
-1. Download `WlanGO-Setup-0.1.0-x64.exe` from [GitHub Releases](https://github.com/Cooanyh/wlangohost/releases).
+1. Download `WlanGO-Setup-0.2.1-x64.exe` from [GitHub Releases](https://github.com/Cooanyh/wlangohost/releases).
 2. Choose an installation folder during setup, including a folder on another drive. Installation does not require administrator access.
 3. Start WlanGO, select **Start network**, then connect a client to the SSID shown in the app.
 4. The two startup options are independent and off by default.
