@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.2
+
+### 简体中文
+
+- 修复主界面窄窗口下滚动条遮挡右侧内容的问题。
+- GitHub 更新检查改为带超时的异步请求；应用每次启动时在后台检查正式版，有新版本时提供下载入口，并支持忽略当前版本直到后续版本发布。
+- 更新检查失败不会阻塞界面，也不会中断网络启动；日志仅记录受限的错误类型信息。
+- 保留电脑/平板/双向连接图形，扩大图标有效绘制占比并微调线宽；当前候选预览已生成，待用户验收后定稿。
+- 运行时图标改为选择最接近 64px 的帧，并将主题 PNG 缩至 64px；相较 256px 位图，单张像素数据从约 256 KiB 降至 16 KiB。
+
+### English
+
+- Fixed the homepage scrollbar covering right-side content in a narrow window.
+- GitHub release checks now use bounded asynchronous requests. WlanGO checks for stable releases in the background at startup and offers a download link when a newer version is available; users can ignore that version until a later release.
+- Failed update checks no longer block the UI or network startup. Logs record only bounded error-type details.
+- Preserve the monitor/tablet/two-way-link artwork while enlarging its visible canvas area and adjusting stroke weight; the candidate preview is ready for user review.
+- Runtime icon loading now selects the frame closest to 64px, and theme PNGs are 64px; pixel data per bitmap drops from about 256 KiB to 16 KiB versus a 256px bitmap.
+
 ## 0.2.1
 
 ### 简体中文

@@ -103,7 +103,7 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SecurityHint">The Wi-Fi password is protected with the current Windows user's DPAPI and is not written to app logs.</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Updates">Updates and support</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CurrentVersion">Current version: {0}</sys:String>
-    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">Manually check GitHub for the latest stable release. Installers are built with Inno Setup; you choose when to download and install. No background updates.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">WlanGO checks GitHub for stable releases in the background at startup. It sends only the app version and never downloads or installs automatically. Ignore a version until a later release.</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CheckUpdates">Check for updates</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenReleases">Downloads and releases</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenProject">GitHub project</sys:String>
@@ -112,6 +112,12 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Available">Version {0} is available. Open “Downloads and releases” to get the installer.</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Failed">Could not reach GitHub to check. You can still open the releases page.</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.OpenFailed">Could not open your browser. Check the Windows default browser settings.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Title">Update available</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Message">Version {0} is available. You are using {1}. Open GitHub to download it manually. If you ignore this version, WlanGO will remind you again only after a newer version is released.</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Download">View downloads</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Ignore">Ignore this version</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Later">Remind me later</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.IgnoreSaveFailed">Could not save the ignored version. You may be reminded again next time.</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Done">Done</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayFilter">SuperDisplay executable|SuperDisplay.exe|Executable files|*.exe</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayTitle">Select SuperDisplay.exe</sys:String>

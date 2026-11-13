@@ -47,10 +47,11 @@ GitHub Actions builds the x64 application and Inno Setup installer on Windows fo
 ## User data and privacy
 
 - Settings: `%LOCALAPPDATA%\WlanGO\settings.json`.
+- The ignored release tag is stored in the local settings file. Update requests go to GitHub's public Releases API; GitHub receives normal connection metadata (including the public IP address) and a User-Agent containing the app version, but no Wi-Fi details, device details, or user settings.
 - Wi-Fi passphrase: protected with Windows DPAPI for the current user; never included in logs or process arguments.
 - Logs: `%LOCALAPPDATA%\WlanGO\logs`, capped at one 64 KiB file and two rotating copies.
 - SuperDisplay executable path: stored as a per-user preference. The third-party program itself is not bundled.
 - Custom app launch names and executable paths: stored as per-user preferences; they are not written to logs or shipped in the installer.
-- No telemetry or background updater is included. The Settings page can query the public GitHub latest-release endpoint when the user asks, and provides project and release links. That request carries only the app version in its User-Agent; Wi-Fi credentials, client details, and user settings are not sent. Updates are installed manually from the Inno Setup release package.
+- No telemetry or automatic installer is included. WlanGO checks the public GitHub latest-release endpoint once at startup and on request from Settings, using a bounded asynchronous request. GitHub receives normal connection metadata (including the public IP address) and an app-version User-Agent; Wi-Fi credentials, client details, and user settings are not sent. A newer version opens the release page only after the user chooses; downloads and installation remain manual. The user can ignore a release until a later version appears.
 
 First launch generates a random password and uses a generic SSID. Existing DPAPI-protected settings from the previous Pad P2P app are imported for the same Windows user. WlanGO does not scan project folders for local network configuration files.

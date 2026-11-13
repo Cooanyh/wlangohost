@@ -65,8 +65,10 @@
                 </ui:Button>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Padding="0,0,12,8" ClipToBounds="True">
+                <!-- Fluent uses an overlay scrollbar; reserve a clear gutter so it cannot cover controls. -->
+                <StackPanel Margin="0,0,18,0">
                     <Grid Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

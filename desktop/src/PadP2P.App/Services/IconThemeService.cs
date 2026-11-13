@@ -8,6 +8,7 @@ namespace PadP2P.App.Services;
 
 internal static class IconThemeService
 {
+    private const int RuntimeIconFrameSize = 64;
     private static readonly ConcurrentDictionary<string, BitmapSource> ImageCache = new(StringComparer.Ordinal);
 
     public static bool IsDark => ApplicationThemeManager.GetAppTheme() == ApplicationTheme.Dark;
@@ -39,11 +40,12 @@ internal static class IconThemeService
                     uri,
                     BitmapCreateOptions.PreservePixelFormat,
                     BitmapCacheOption.OnLoad);
-                var largestFrame = decoder.Frames
-                    .OrderByDescending(frame => Math.Max(frame.PixelWidth, frame.PixelHeight))
+                var runtimeFrame = decoder.Frames
+                    .OrderBy(frame => Math.Abs(Math.Max(frame.PixelWidth, frame.PixelHeight) - RuntimeIconFrameSize))
+                    .ThenByDescending(frame => Math.Max(frame.PixelWidth, frame.PixelHeight))
                     .First();
-                largestFrame.Freeze();
-                return largestFrame;
+                runtimeFrame.Freeze();
+                return runtimeFrame;
             }
 
             var image = new BitmapImage();

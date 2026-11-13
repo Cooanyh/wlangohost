@@ -24,6 +24,9 @@ public partial class App : Application
     private RegisteredWaitHandle? _activationWait;
     private TaskbarIcon? _trayIcon;
     private AppViewModel? _viewModel;
+    private readonly UpdateCheckService _updateCheckService = new();
+    private readonly UpdateNotificationCoordinator _updateNotificationCoordinator = new();
+    private readonly CancellationTokenSource _lifetimeCancellation = new();
     private MenuItem? _statusMenuItem;
     private MenuItem? _toggleNetworkMenuItem;
     private MenuItem? _openWindowMenuItem;
@@ -36,6 +39,7 @@ public partial class App : Application
     private MenuItem? _exitMenuItem;
     private bool _hasMutex;
     private bool _isExiting;
+    private bool _lifetimeStopped;
 
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -67,6 +71,8 @@ public partial class App : Application
             var startHidden = e.Args.Any(argument => string.Equals(argument, "--start-hidden", StringComparison.OrdinalIgnoreCase));
             if (!startHidden) ShowMainWindow();
 
+            _ = CheckForUpdatesOnStartupAsync(settings, settingsStore);
+
             if (settings.AutoStartNetwork)
                 await _viewModel.StartNetworkAsync();
         }
@@ -78,6 +84,57 @@ public partial class App : Application
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             Shutdown();
+        }
+    }
+
+    private async Task CheckForUpdatesOnStartupAsync(UserSettings settings, SettingsStore settingsStore)
+    {
+        try
+        {
+            var release = await _updateCheckService.GetLatestReleaseAsync(_lifetimeCancellation.Token);
+            if (_isExiting || _lifetimeStopped) return;
+            if (release.Version <= UpdateCheckService.CurrentVersion ||
+                string.Equals(settings.IgnoredUpdateVersion, release.Tag, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            await Dispatcher.InvokeAsync(() =>
+            {
+                if (_isExiting || _lifetimeStopped) return;
+                if (!_updateNotificationCoordinator.TryClaim(release)) return;
+                var notice = new UpdateNoticeWindow(release);
+                if (MainWindow?.IsVisible == true)
+                    notice.Owner = MainWindow;
+                else
+                    notice.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+                notice.ShowDialog();
+                if (!notice.IgnoreThisVersion) return;
+
+                var previouslyIgnoredVersion = settings.IgnoredUpdateVersion;
+                settings.IgnoredUpdateVersion = release.Tag;
+                try
+                {
+                    settingsStore.Save(settings);
+                }
+                catch (Exception exception)
+                {
+                    settings.IgnoredUpdateVersion = previouslyIgnoredVersion;
+                    BoundedAppLog.Warning("update.ignore-version-save-failed", exception.GetType().Name);
+                    MessageBox.Show(
+                        MainWindow?.IsVisible == true ? MainWindow : null,
+                        UiText.Get("Update.IgnoreSaveFailed"),
+                        UiText.Get("AppName"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+                }
+            });
+        }
+        catch (OperationCanceledException) when (_lifetimeStopped)
+        {
+        }
+        catch (Exception exception)
+        {
+            BoundedAppLog.Warning("update.startup-check-failed", exception.GetType().Name);
         }
     }
 
@@ -267,7 +324,7 @@ public partial class App : Application
     private void OpenSettings()
     {
         if (_viewModel is null) return;
-        var settingsWindow = new SettingsWindow(_viewModel);
+        var settingsWindow = new SettingsWindow(_viewModel, _updateCheckService, _updateNotificationCoordinator);
         if (MainWindow?.IsVisible == true)
             settingsWindow.Owner = MainWindow;
         else
@@ -341,6 +398,9 @@ public partial class App : Application
     protected override void OnExit(ExitEventArgs e)
     {
         _activationWait?.Unregister(null);
+        _lifetimeStopped = true;
+        _lifetimeCancellation.Cancel();
+        _lifetimeCancellation.Dispose();
         _activationEvent?.Dispose();
         ApplicationThemeManager.Changed -= OnApplicationThemeChanged;
         if (_hasMutex)
