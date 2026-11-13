@@ -25,6 +25,7 @@ public partial class App : Application
     private TaskbarIcon? _trayIcon;
     private AppViewModel? _viewModel;
     private readonly UpdateCheckService _updateCheckService = new();
+    private readonly UpdateNotificationCoordinator _updateNotificationCoordinator = new();
     private readonly CancellationTokenSource _lifetimeCancellation = new();
     private MenuItem? _statusMenuItem;
     private MenuItem? _toggleNetworkMenuItem;
@@ -99,6 +100,7 @@ public partial class App : Application
             await Dispatcher.InvokeAsync(() =>
             {
                 if (_isExiting || _lifetimeStopped) return;
+                if (!_updateNotificationCoordinator.TryClaim(release)) return;
                 var notice = new UpdateNoticeWindow(release);
                 if (MainWindow?.IsVisible == true)
                     notice.Owner = MainWindow;
@@ -322,7 +324,7 @@ public partial class App : Application
     private void OpenSettings()
     {
         if (_viewModel is null) return;
-        var settingsWindow = new SettingsWindow(_viewModel, _updateCheckService);
+        var settingsWindow = new SettingsWindow(_viewModel, _updateCheckService, _updateNotificationCoordinator);
         if (MainWindow?.IsVisible == true)
             settingsWindow.Owner = MainWindow;
         else

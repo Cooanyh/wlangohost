@@ -12,15 +12,20 @@ public partial class SettingsWindow : FluentWindow
     private const string ReleasesUrl = "https://github.com/Cooanyh/wlangohost/releases/latest";
     private const string ProjectUrl = "https://github.com/Cooanyh/wlangohost";
     private readonly UpdateCheckService _updateCheckService;
+    private readonly UpdateNotificationCoordinator _updateNotificationCoordinator;
     private readonly CancellationTokenSource _windowCancellation = new();
     private bool _isClosed;
     private bool _checkRunning;
 
-    internal SettingsWindow(AppViewModel viewModel, UpdateCheckService updateCheckService)
+    internal SettingsWindow(
+        AppViewModel viewModel,
+        UpdateCheckService updateCheckService,
+        UpdateNotificationCoordinator updateNotificationCoordinator)
     {
         InitializeComponent();
         DataContext = viewModel;
         _updateCheckService = updateCheckService;
+        _updateNotificationCoordinator = updateNotificationCoordinator;
         RefreshLocalizedText();
         UiText.LanguageChanged += UiText_LanguageChanged;
         Closed += (_, _) =>
@@ -63,6 +68,7 @@ public partial class SettingsWindow : FluentWindow
             UpdateStatusText.Text = UiText.Format("Update.Available", release.Tag);
             if (DataContext is AppViewModel existingViewModel && existingViewModel.IsUpdateVersionIgnored(release.Tag))
                 return;
+            if (!_updateNotificationCoordinator.TryClaim(release)) return;
 
             var notice = new UpdateNoticeWindow(release) { Owner = this };
             notice.ShowDialog();

@@ -101,8 +101,11 @@ internal sealed class UpdateCheckService
         if (!Version.TryParse(versionText, out var version))
             throw new InvalidDataException("The latest GitHub release tag is not a stable version.");
 
-        return new UpdateRelease(tag, new Version(version.Major, version.Minor, Math.Max(version.Build, 0)));
+        return new UpdateRelease(
+            tag,
+            new Version(version.Major, version.Minor, Math.Max(version.Build, 0)),
+            Guid.NewGuid());
     }
 }
 
-internal sealed record UpdateRelease(string Tag, Version Version);
+internal sealed record UpdateRelease(string Tag, Version Version, Guid CheckId);
