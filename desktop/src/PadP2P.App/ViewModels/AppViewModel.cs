@@ -684,6 +684,27 @@ internal sealed class AppViewModel : INotifyPropertyChanged, IAsyncDisposable
         catch (Exception ex) { ErrorMessage = "Settings could not be saved: " + ex.Message; }
     }
 
+    internal bool IsUpdateVersionIgnored(string versionTag)
+        => string.Equals(_settings.IgnoredUpdateVersion, versionTag, StringComparison.OrdinalIgnoreCase);
+
+    internal bool TryIgnoreUpdateVersion(string versionTag)
+    {
+        if (string.IsNullOrWhiteSpace(versionTag)) return false;
+        var previous = _settings.IgnoredUpdateVersion;
+        _settings.IgnoredUpdateVersion = versionTag;
+        try
+        {
+            _settingsStore.Save(_settings);
+            return true;
+        }
+        catch (Exception)
+        {
+            _settings.IgnoredUpdateVersion = previous;
+            ErrorMessage = UiText.Get("Update.IgnoreSaveFailed");
+            return false;
+        }
+    }
+
     private void OnLanguageChanged(object? sender, EventArgs e) => OnUi(() =>
     {
         if (_state == NetworkState.Running)

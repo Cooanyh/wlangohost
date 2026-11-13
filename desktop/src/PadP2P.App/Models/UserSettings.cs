@@ -11,4 +11,5 @@ public sealed class UserSettings
     public List<LauncherEntry> Launchers { get; set; } = [];
     public string Language { get; set; } = "System";
     public string LastNetworkState { get; set; } = "Stopped";
+    public string IgnoredUpdateVersion { get; set; } = string.Empty;
 }

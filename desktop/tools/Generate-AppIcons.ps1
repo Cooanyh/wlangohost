@@ -56,6 +56,7 @@ foreach ($shape in $shapes) {
 $artBounds = [System.Windows.Rect]::new($minX, $minY, $maxX - $minX, $maxY - $minY)
 
 $iconSizes = @(16, 24, 32, 48, 64, 128, 256)
+$runtimeIconSize = 64
 $palettes = @{
     Light = @{
         Foreground = [System.Windows.Media.Color]([System.Windows.Media.ColorConverter]::ConvertFromString('#26364d'))
@@ -99,15 +100,22 @@ function Get-ShapeNumber {
 }
 
 function New-ShapePen {
-    param([System.Xml.XmlElement]$Node, [System.Windows.Media.Color]$Foreground, [System.Windows.Media.Color]$Accent)
+    param(
+        [System.Xml.XmlElement]$Node,
+        [System.Windows.Media.Color]$Foreground,
+        [System.Windows.Media.Color]$Accent,
+        [double]$RenderScale
+    )
 
     $strokeText = $Node.GetAttribute('stroke')
     if ($Node.GetAttribute('class') -eq 'link') { $strokeText = '#07877f' }
     if ([string]::IsNullOrWhiteSpace($strokeText) -or $strokeText -eq 'none') { return $null }
 
+    $strokeWidth = Get-ShapeNumber -Node $Node -Attribute 'stroke-width' -Default 1
+    $strokeWidth = [Math]::Max($strokeWidth, 0.9 / $RenderScale)
     $pen = [System.Windows.Media.Pen]::new(
         (Get-ShapeBrush -ColorText $strokeText -Foreground $Foreground -Accent $Accent),
-        (Get-ShapeNumber -Node $Node -Attribute 'stroke-width' -Default 1))
+        $strokeWidth)
     if ($Node.GetAttribute('stroke-linecap') -eq 'round') {
         $pen.StartLineCap = [System.Windows.Media.PenLineCap]::Round
         $pen.EndLineCap = [System.Windows.Media.PenLineCap]::Round
@@ -125,10 +133,11 @@ function Draw-SvgShape {
         [Parameter(Mandatory)][System.Windows.Media.DrawingContext]$Context,
         [Parameter(Mandatory)][System.Xml.XmlElement]$Node,
         [Parameter(Mandatory)][System.Windows.Media.Color]$Foreground,
-        [Parameter(Mandatory)][System.Windows.Media.Color]$Accent
+        [Parameter(Mandatory)][System.Windows.Media.Color]$Accent,
+        [Parameter(Mandatory)][double]$RenderScale
     )
 
-    $pen = New-ShapePen -Node $Node -Foreground $Foreground -Accent $Accent
+    $pen = New-ShapePen -Node $Node -Foreground $Foreground -Accent $Accent -RenderScale $RenderScale
     $fillText = $Node.GetAttribute('fill')
     $fill = if ($fillText) { Get-ShapeBrush -ColorText $fillText -Foreground $Foreground -Accent $Accent } else { New-Brush -Color $Foreground }
 
@@ -186,7 +195,7 @@ function New-PngFrame {
     $matrix = [System.Windows.Media.Matrix]::new($scale, 0, 0, $scale, $offsetX, $offsetY)
     $context.PushTransform([System.Windows.Media.MatrixTransform]::new($matrix))
     foreach ($shape in $shapes) {
-        Draw-SvgShape -Context $context -Node $shape -Foreground $palette.Foreground -Accent $palette.Accent
+        Draw-SvgShape -Context $context -Node $shape -Foreground $palette.Foreground -Accent $palette.Accent -RenderScale $scale
     }
     $context.Pop()
 
@@ -195,7 +204,8 @@ function New-PngFrame {
         $outline = [System.Windows.Media.Pen]::new((New-Brush -Color $palette.StatusOutline), [Math]::Max(0.75, $Size * 0.035))
         $outline.Freeze()
         $dotRadius = $Size * 0.09
-        $dotCenter = [System.Windows.Point]::new($Size * 0.86, $Size * 0.86)
+        # The device artwork fills the lower-right corner, so keep the state marker in the empty lower-left area.
+        $dotCenter = [System.Windows.Point]::new($Size * 0.14, $Size * 0.86)
         $context.DrawEllipse($statusBrush, $outline, $dotCenter, $dotRadius, $dotRadius)
     }
 
@@ -270,12 +280,12 @@ foreach ($theme in @('Light', 'Dark')) {
     Save-Ico -Path (Join-Path $assetsRoot "PadP2P.Stopped.$theme.ico") -Theme $theme -StatusColor $neutral -Badge
     Save-Ico -Path (Join-Path $assetsRoot "PadP2P.Running.$theme.ico") -Theme $theme -StatusColor $running -Badge
     Save-Ico -Path (Join-Path $assetsRoot "PadP2P.Error.$theme.ico") -Theme $theme -StatusColor $errorStatusColor -Badge
-    [System.IO.File]::WriteAllBytes((Join-Path $assetsRoot "PadP2P.$theme.png"), (New-PngFrame -Size 256 -Theme $theme))
+    [System.IO.File]::WriteAllBytes((Join-Path $assetsRoot "PadP2P.$theme.png"), (New-PngFrame -Size $runtimeIconSize -Theme $theme))
 }
 foreach ($state in @('Stopped', 'Running', 'Error')) {
     Copy-Item -LiteralPath (Join-Path $assetsRoot "PadP2P.$state.Light.ico") -Destination (Join-Path $assetsRoot "PadP2P.$state.ico") -Force
 }
-[System.IO.File]::WriteAllBytes((Join-Path $assetsRoot 'PadP2P.png'), (New-PngFrame -Size 256 -Theme Light))
+[System.IO.File]::WriteAllBytes((Join-Path $assetsRoot 'PadP2P.png'), (New-PngFrame -Size $runtimeIconSize -Theme Light))
 
 foreach ($iconFile in Get-ChildItem -LiteralPath $assetsRoot -Filter 'PadP2P*.ico') {
     $decoder = [System.Windows.Media.Imaging.BitmapDecoder]::Create(

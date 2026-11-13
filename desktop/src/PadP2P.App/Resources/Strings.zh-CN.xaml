@@ -103,7 +103,7 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.SecurityHint">Wi-Fi 密码使用当前 Windows 用户的 DPAPI 保护，不会写入应用日志。</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Updates">更新与支持</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CurrentVersion">当前版本：{0}</sys:String>
-    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">手动检查 GitHub 上的最新正式版；安装包由 Inno Setup 制作，需由你确认下载和安装，不会后台自动更新。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.UpdatesHint">WlanGO 每次启动时在后台检查 GitHub 最新正式版；仅发送应用版本标识，不会自动下载或安装。可忽略当前版本，直到后续版本发布。</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.CheckUpdates">检查更新</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenReleases">下载与版本记录</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.OpenProject">GitHub 项目</sys:String>
@@ -112,6 +112,12 @@
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Available">发现新版本 {0}。请打开“下载与版本记录”获取安装包。</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.Failed">无法连接 GitHub 检查版本；你仍可直接打开下载页面。</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.OpenFailed">无法打开浏览器，请检查 Windows 默认浏览器设置。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Title">发现新版本</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Message">发现新版本 {0}，当前版本为 {1}。可打开 GitHub 下载页面手动安装；忽略此版本后，只有发布更新版本时才会再次提醒。</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Download">查看下载</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Ignore">忽略此版本</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="UpdateDialog.Later">稍后提醒</sys:String>
+    <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Update.IgnoreSaveFailed">无法保存忽略版本的设置；下次启动时可能会再次提醒。</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Settings.Done">完成</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayFilter">SuperDisplay 程序|SuperDisplay.exe|可执行文件|*.exe</sys:String>
     <sys:String xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="Dialog.SuperDisplayTitle">选择 SuperDisplay.exe</sys:String>

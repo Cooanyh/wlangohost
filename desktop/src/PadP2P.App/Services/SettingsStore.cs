@@ -38,7 +38,8 @@ internal sealed class SettingsStore
                     MultipleLaunchMode = NormalizeMultipleLaunchMode(stored.MultipleLaunchMode),
                     Launchers = NormalizeLaunchers(stored),
                     Language = NormalizeLanguage(stored.Language),
-                    LastNetworkState = stored.LastNetworkState ?? "Stopped"
+                    LastNetworkState = stored.LastNetworkState ?? "Stopped",
+                    IgnoredUpdateVersion = stored.IgnoredUpdateVersion ?? string.Empty
                 };
                 if (!string.Equals(sourcePath, _settingsPath, StringComparison.OrdinalIgnoreCase))
                     Save(settings);
@@ -86,7 +87,8 @@ internal sealed class SettingsStore
             ShowSuperDisplay = settings.ShowLaunchers,
             SuperDisplayPath = settings.Launchers.FirstOrDefault(entry => entry.IsSuperDisplay)?.ExecutablePath ?? string.Empty,
             Language = settings.Language,
-            LastNetworkState = settings.LastNetworkState
+            LastNetworkState = settings.LastNetworkState,
+            IgnoredUpdateVersion = settings.IgnoredUpdateVersion
         };
         CryptographicOperations.ZeroMemory(encrypted);
 
@@ -163,5 +165,6 @@ internal sealed class SettingsStore
         public List<LauncherEntry>? Launchers { get; set; }
         public string? Language { get; set; } = "System";
         public string? LastNetworkState { get; set; }
+        public string? IgnoredUpdateVersion { get; set; }
     }
 }

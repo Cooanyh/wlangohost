@@ -1,9 +1,4 @@
 using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection;
-using System.Text.Json;
 using System.Windows;
 using PadP2P.App.Services;
 using PadP2P.App.ViewModels;
@@ -14,18 +9,27 @@ namespace PadP2P.App;
 
 public partial class SettingsWindow : FluentWindow
 {
-    private const string LatestReleaseApi = "https://api.github.com/repos/Cooanyh/wlangohost/releases/latest";
     private const string ReleasesUrl = "https://github.com/Cooanyh/wlangohost/releases/latest";
     private const string ProjectUrl = "https://github.com/Cooanyh/wlangohost";
-    private static readonly HttpClient UpdateClient = CreateUpdateClient();
+    private readonly UpdateCheckService _updateCheckService;
+    private readonly CancellationTokenSource _windowCancellation = new();
+    private bool _isClosed;
+    private bool _checkRunning;
 
-    internal SettingsWindow(AppViewModel viewModel)
+    internal SettingsWindow(AppViewModel viewModel, UpdateCheckService updateCheckService)
     {
         InitializeComponent();
         DataContext = viewModel;
+        _updateCheckService = updateCheckService;
         RefreshLocalizedText();
         UiText.LanguageChanged += UiText_LanguageChanged;
-        Closed += (_, _) => UiText.LanguageChanged -= UiText_LanguageChanged;
+        Closed += (_, _) =>
+        {
+            _isClosed = true;
+            _windowCancellation.Cancel();
+            if (!_checkRunning) _windowCancellation.Dispose();
+            UiText.LanguageChanged -= UiText_LanguageChanged;
+        };
         IconThemeService.ApplyTo(this);
         SystemThemeWatcher.Watch(this);
     }
@@ -34,61 +38,56 @@ public partial class SettingsWindow : FluentWindow
 
     private void RefreshLocalizedText()
     {
-        CurrentVersionText.Text = UiText.Format("Settings.CurrentVersion", CurrentVersion().ToString(3));
+        CurrentVersionText.Text = UiText.Format("Settings.CurrentVersion", UpdateCheckService.CurrentVersion.ToString(3));
         UpdateStatusText.Text = string.Empty;
-    }
-
-    private static HttpClient CreateUpdateClient()
-    {
-        var client = new HttpClient { Timeout = TimeSpan.FromSeconds(8) };
-        client.DefaultRequestHeaders.UserAgent.ParseAdd($"WlanGO/{CurrentVersion().ToString(3)}");
-        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
-        return client;
-    }
-
-    private static Version CurrentVersion()
-    {
-        var version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(0, 2, 0);
-        return new Version(version.Major, version.Minor, Math.Max(version.Build, 0));
     }
 
     private async void CheckUpdates_Click(object sender, RoutedEventArgs e)
     {
+        if (_isClosed) return;
+        _checkRunning = true;
         CheckUpdatesButton.IsEnabled = false;
         UpdateStatusText.Text = UiText.Get("Update.Checking");
 
         try
         {
-            using var response = await UpdateClient.GetAsync(LatestReleaseApi, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
-            await using var stream = await response.Content.ReadAsStreamAsync();
-            using var release = await JsonDocument.ParseAsync(stream);
-
-            if (!release.RootElement.TryGetProperty("tag_name", out var tagProperty) ||
-                tagProperty.ValueKind != JsonValueKind.String)
+            var release = await _updateCheckService.GetLatestReleaseAsync(_windowCancellation.Token);
+            if (_isClosed) return;
+            var currentVersion = UpdateCheckService.CurrentVersion;
+            if (release.Version <= currentVersion)
             {
-                throw new InvalidDataException("The GitHub release response did not contain a version tag.");
+                UpdateStatusText.Text = UiText.Format("Update.Current", currentVersion.ToString(3));
+                return;
             }
 
-            var tag = tagProperty.GetString() ?? string.Empty;
-            var versionText = tag.StartsWith('v') || tag.StartsWith('V') ? tag[1..] : tag;
-            if (!Version.TryParse(versionText, out var latestVersion))
-            {
-                throw new InvalidDataException("The latest GitHub release tag is not a stable version.");
-            }
+            UpdateStatusText.Text = UiText.Format("Update.Available", release.Tag);
+            if (DataContext is AppViewModel existingViewModel && existingViewModel.IsUpdateVersionIgnored(release.Tag))
+                return;
 
-            var currentVersion = CurrentVersion();
-            UpdateStatusText.Text = latestVersion > currentVersion
-                ? UiText.Format("Update.Available", tag)
-                : UiText.Format("Update.Current", currentVersion.ToString(3));
+            var notice = new UpdateNoticeWindow(release) { Owner = this };
+            notice.ShowDialog();
+            if (notice.IgnoreThisVersion && DataContext is AppViewModel viewModel)
+            {
+                if (!viewModel.TryIgnoreUpdateVersion(release.Tag))
+                    UpdateStatusText.Text = UiText.Get("Update.IgnoreSaveFailed");
+            }
         }
-        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or IOException or JsonException or InvalidDataException)
+        catch (OperationCanceledException) when (_isClosed)
         {
+        }
+        catch (Exception exception)
+        {
+            if (_isClosed) return;
             UpdateStatusText.Text = UiText.Get("Update.Failed");
+            BoundedAppLog.Warning("update.manual-check-failed", exception.GetType().Name);
         }
         finally
         {
-            CheckUpdatesButton.IsEnabled = true;
+            _checkRunning = false;
+            if (_isClosed)
+                _windowCancellation.Dispose();
+            else
+                CheckUpdatesButton.IsEnabled = true;
         }
     }
 
